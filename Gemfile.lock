@@ -8,6 +8,8 @@ GEM
       ffi
     ffi-inline (0.0.4.3)
       ffi (>= 0.4.0)
+    haml (4.0.6)
+      tilt
     iso-639 (0.2.5)
     rack (1.6.0)
     rack-protection (1.5.3)
@@ -28,5 +30,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  haml
   sinatra
   tesseract-ocr
