@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'haml'
+require 'tesseract'
 
 class MonitorIOT < Sinatra::Base
   get '/healthcheck' do
@@ -11,10 +12,16 @@ class MonitorIOT < Sinatra::Base
   end
 
   post "/:id/upload" do 
-    File.open("uploads/#{params[:id]}.jpg", "w") do |f|
+#    require 'pry'; binding.pry
+    filename = "uploads/#{params[:id]}.tif"
+    File.open("1.tif", "w") do |f|
       f.write(params['reading'][:tempfile].read)
     end
-    return "Reading uploaded"
+    system("tesseract 1.tif output")
+#    e = Tesseract::Engine.new
+#    return e.text_for("uploads/#{params[:id]}.tif").strip
+    result = File.read('output.txt') rescue "nil"
+    return result
   end
 end
 
