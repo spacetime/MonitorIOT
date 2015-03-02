@@ -1,6 +1,6 @@
 require 'sinatra'
 require 'haml'
-require 'tesseract'
+#require 'tesseract'
 
 class MonitorIOT < Sinatra::Base
   get '/healthcheck' do
@@ -17,7 +17,7 @@ class MonitorIOT < Sinatra::Base
     File.open("1.tif", "w") do |f|
       f.write(params['reading'][:tempfile].read)
     end
-    system("tesseract 1.tif output")
+    system("tesseract 1.tif output nobatch digits")
 #    e = Tesseract::Engine.new
 #    return e.text_for("uploads/#{params[:id]}.tif").strip
     result = File.read('output.txt') rescue "nil"
